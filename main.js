@@ -1,5 +1,4 @@
 import express from 'express';
-import { configure } from '@dwp/govuk-casa';
 
 import mainApp from './main-app/main.js';
 import subApp from './sub-app/main.js';
