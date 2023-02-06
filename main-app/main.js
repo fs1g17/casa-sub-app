@@ -1,11 +1,9 @@
 import express from 'express';
 import { configure, Plan } from '@dwp/govuk-casa';
 
-const application = ({
-  mountUrl = '/'
-}) => {
+const application = (mountUrl = '/') => {
   const { mount, ancillaryRouter } = configure({
-    views: ['/views/'],
+    views: ['./views/'],
     session: {
       name: 'myappsessionid', // session cookie name 
       secret: 'secret',       // secret used to sign cookie
