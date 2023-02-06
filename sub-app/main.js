@@ -3,7 +3,7 @@ import { configure } from '@dwp/govuk-casa';
 
 const application = (mountUrl = '/') => {
   const { mount, ancillaryRouter } = configure({
-    views: ['./main-app/views/'],
+    views: ['./sub-app/views/'],
     session: {
       name: 'myappsessionid', // session cookie name 
       secret: 'secret',       // secret used to sign cookie
