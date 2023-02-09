@@ -1,19 +1,28 @@
 import express from 'express';
 import { configure } from '@dwp/govuk-casa';
 
-const application = (mountUrl = '/') => {
+const application = ({
+  sessionStore
+}) => {
   const { mount, ancillaryRouter } = configure({
     views: ['./main-app/views/'],
     session: {
       name: 'myappsessionid', // session cookie name 
       secret: 'secret',       // secret used to sign cookie
       ttl: 3600,              // (seconds)
-      secure: false
+      secure: false,
+      store: sessionStore,
     }
   });
 
   ancillaryRouter.use('/start', (req, res, next) => {
-    res.render('pages/start.njk');
+    if(req.session.mainCount) {
+      ++req.session.mainCount;
+    } else {
+      req.session.mainCount = 1;
+    }
+
+    res.render('pages/start.njk', { message: "Viewed " + req.session.mainCount + " times." });
   });
 
   // redirect unknown pages to the welcome page
